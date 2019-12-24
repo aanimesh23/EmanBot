@@ -18,6 +18,10 @@ pairs = [
         ["Good and you ?",]
     ],
     [
+    	r"what(.*) up ?",
+    	["nm, you ?", "nothing...", "nothing much, wbu?"]
+    ],
+    [
         r"(.*) hbu?",
         ["Good and you ?",]
     ],
