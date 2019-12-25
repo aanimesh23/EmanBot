@@ -14,11 +14,11 @@ pairs = [
     	["I'm Emanbot", "none of you buisness", "fuck off",]
     ],
     [
-        r"how are you ?",
+        r"how(.*) ?",
         ["Good and you ?",]
     ],
     [
-    	r"what(.*) up ?",
+    	r"what(.*) up ?|wassup",
     	["nm, you ?", "nothing...", "nothing much, wbu?"]
     ],
     [
@@ -34,7 +34,7 @@ pairs = [
         ["Nice to hear that","Alright :)",]
     ],
     [
-        r"hi|hey|hello",
+        r"hi|hey|hello|yo(.*)",
         ["Hello", "Hey there",]
     ],
     [
@@ -88,16 +88,33 @@ pairs = [
         ["BBye take care. See you soon :) ","It was nice talking to you. See you soon :)"]
 	],
 	[
+    	r"wha(.*) ?",
+    	["yupp.",]
+    ],
+	[
 		r"(.*)",
 		["Ohh", "mhmm", "what ?", "oh well",]
 	],
+
 ]
 
+class my_chat(Chat):
+	def converse(self, quit="quit", user_input = ""):
+		if user_input:
+			while user_input[-1] in "!.":
+				user_input = user_input[:-1]
+			return self.respond(user_input)
 
 def start():
-    print("Hi, I am EmanBot, I can make dumb conversations") #default message at the start
-    chat = Chat(pairs, reflections)
-    chat.converse()
+    #print("Hi, I am EmanBot, I can make dumb conversations") #default message at the start
+    chat = my_chat(pairs, reflections)
+    user_input = ''
+    try:
+    	user_input = input()
+    except EOFError:
+    	print(user_input)
+    x = chat.converse(user_input = user_input)
+    print(x)
 
 if __name__ == "__main__":
     start()
