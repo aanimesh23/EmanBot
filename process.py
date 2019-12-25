@@ -6,6 +6,10 @@ pairs = [
         ["Hello %1, How are you today ?",]
     ],
     [
+        r"merry christmas",
+        ["Merry Christmas to you too! <3",]
+    ],
+    [
         r"what is your name ?",
         ["My name is EmanBot and I'm a joke.",]
     ],
@@ -88,6 +92,10 @@ pairs = [
         ["BBye take care. See you soon :) ","It was nice talking to you. See you soon :)"]
 	],
 	[
+		r"I(.*) good ?",
+		["that's nice :D",]
+	],
+	[
     	r"wha(.*) ?",
     	["yupp.",]
     ],
@@ -115,6 +123,11 @@ def start():
     	print(user_input)
     x = chat.converse(user_input = user_input)
     print(x)
+
+def reply_with(msg):
+	chat = my_chat(pairs, reflections)
+	x = chat.converse(user_input = msg)
+	return x
 
 if __name__ == "__main__":
     start()
